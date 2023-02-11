@@ -1,0 +1,28 @@
+﻿  main.cpp
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\main.cpp(8,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\main.cpp(46,91): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\main.cpp(46,57): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+  Particle.cpp
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Particle.cpp(26,55): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+  ParticleSystem.cpp
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\ParticleSystem.cpp(8,14): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  Rocket.cpp
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Rocket.cpp(46,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Rocket_Rush.vcxproj -> C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Debug\Rocket_Rush.exe
