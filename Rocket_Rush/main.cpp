@@ -1,12 +1,12 @@
-#include <iostream>
-//#include <SFML/Graphics.hpp>
 #include "ParticleSystem.hpp"
 #include "Rocket.hpp"
+#include "Weapon.hpp"
 
 int main()
 {
 	srand(time(NULL));
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "Testing", sf::Style::Close);
+	sf::Vector2i windowSize = sf::Vector2i(1920, 1080);
+	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Testing", sf::Style::Fullscreen);
 	sf::Vector2f mousePos;
 	sf::Clock clk;
 	sf::Time tme;
@@ -14,7 +14,8 @@ int main()
 	float generationTimer = 0;
 
 	ParticleSystem* p_system = new ParticleSystem();
-	Rocket* player = new Rocket();
+	Rocket* player = new Rocket(windowSize);
+	Weapon* weapon = new Weapon(windowSize);
 
 	while (window.isOpen()) {
 		tme = clk.restart();
@@ -28,9 +29,10 @@ int main()
 				window.close();
 				return 0;
 			case sf::Event::MouseButtonPressed:
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-					//p_system->generate(mousePos);
-					break;
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+					weapon->fire(player->getmPos(), player->getFireAngle());
+				}
+				break;
 
 			case sf::Event::KeyPressed:
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -55,6 +57,7 @@ int main()
 		}
 
 		player->update(dt);
+		weapon->update(dt);
 
 		p_system->update(dt, player->getPlayerEndPosition());
 
@@ -63,6 +66,7 @@ int main()
 
 		p_system->render(window);
 		player->render(window);
+		weapon->draw(window);
 
 		window.display();
 	}
