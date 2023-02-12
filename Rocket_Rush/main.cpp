@@ -11,9 +11,13 @@ int main()
 	sf::Clock clk;
 	sf::Time tme;
 	float dt;
-	float generationTimer = 0;
+	float flame_generationTimer = 0;
+	float smoke_generationTimer = 0;
+	bool w_down = false;
 
-	ParticleSystem* p_system = new ParticleSystem();
+	ParticleSystem* smoke = new ParticleSystem(1, std::pair<int, int>(5, 15), 0.005f, sf::Color(92, 92, 92, 255));
+	ParticleSystem* flame = new ParticleSystem(1, std::pair<int, int>(5, 10), 0.001f, sf::Color::Yellow);
+
 	Rocket* player = new Rocket(windowSize);
 	Weapon* weapon = new Weapon(windowSize);
 
@@ -37,6 +41,13 @@ int main()
 			case sf::Event::KeyPressed:
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 					window.close();
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+					w_down = true;
+				break;
+
+			case sf::Event::KeyReleased:
+				if (e.key.code == sf::Keyboard::W)
+					w_down = false;
 				break;
 
 			default:
@@ -48,24 +59,35 @@ int main()
 		mousePos = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
 
 		//particle generation
-		generationTimer += dt;
-		if (generationTimer > 0.05f) {
-			generationTimer = 0;
+		//smoke particles
+		smoke_generationTimer += dt;
+		if (smoke_generationTimer > 0.2f) {
+			smoke_generationTimer = 0;
 			if (player->getSpeed() != 0)
-				p_system->generate(player->getPlayerEndPosition());
-			//p_system->generate(sf::Vector2f(window.getSize().x / 2, window.getSize().y + 10));
+				smoke->emit(player->getPlayerEndPosition());
+		}
+		//flame particles
+		flame_generationTimer += dt;
+		if (flame_generationTimer > 0.01f) {
+			flame_generationTimer = 0;
+			if (w_down)
+				flame->emit(player->getPlayerEndPosition());
 		}
 
 		player->update(dt);
 		weapon->update(dt);
 
-		p_system->update(dt, player->getPlayerEndPosition());
+		smoke->update(dt, player->getPlayerEndPosition());
+		flame->update(dt, player->getPlayerEndPosition());
 
 		/////////////////////
 		window.clear();
 
-		p_system->render(window);
+		smoke->render(window);
+		flame->render(window);
+
 		player->render(window);
+		
 		weapon->draw(window);
 
 		window.display();

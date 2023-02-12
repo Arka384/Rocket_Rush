@@ -2,17 +2,25 @@
 
 ParticleSystem::ParticleSystem() = default;
 
-void ParticleSystem::generate(const sf::Vector2f& position)
+ParticleSystem::ParticleSystem(const int& maxNumber, const std::pair<int, int>& size, const float& dissolveTime, const sf::Color& color)
+{
+	this->size = size;
+	this->m_color = color;
+	this->n_particles = maxNumber;
+	this->dissolveTime = dissolveTime;
+}
+
+void ParticleSystem::emit(const sf::Vector2f& position)
 {
 	for (int i = 0; i < n_particles; i++) {
-		float size = rand() % 20 + 5;
+		float size = rand() % this->size.second + this->size.first;
 		float pos_offset = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 25)); //scattering
 		int r_x = rand() % 2;
 		int r_y = rand() % 2;
 		float pos_offset_x = r_x ? -pos_offset : pos_offset;
 		float pos_offset_y = r_y ? -pos_offset : pos_offset;
 		sf::Vector2f pos = sf::Vector2f(position.x + pos_offset_x, position.y + pos_offset_y);
-		Particle* particle = new Particle(sf::Vector2f(size, size), sf::Color(96, 96, 96, 255), pos);
+		Particle* particle = new Particle(sf::Vector2f(size, size), this->m_color, pos, this->dissolveTime);
 		particles.push_back(std::shared_ptr<Particle>(particle));
 	}
 }

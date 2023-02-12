@@ -11,9 +11,9 @@ private:
 	sf::Vector2f m_endPos;
 	sf::Vector2i windowSize;
 	float speed = 0.f;
-	float max_speed = 3.f;
-	float acc = 2.f;
-	float friction = 0.4f;
+	float max_speed = 2.f;
+	float acc = 1.2f;
+	float friction = 0.6f;
 	float fireAngle = 0.f;
 	float angle = 0.f;
 	float angle_movement_factor = 2.f;
