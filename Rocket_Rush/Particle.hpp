@@ -4,7 +4,7 @@
 class Particle
 {
 private:
-	sf::RectangleShape m_particle;
+	sf::Sprite m_sprite;
 	sf::Vector2f m_particle_size;
 	sf::Color m_particle_color;
 	sf::Vector2f m_pos;
@@ -15,7 +15,7 @@ private:
 
 public:
 	Particle();
-	Particle(const sf::Vector2f& size, const sf::Color& color, const sf::Vector2f& pos, const float& dissolveTime);
+	Particle(const sf::Vector2f& size, const sf::Sprite& particleSprite, const sf::Color& color, const sf::Vector2f& pos, const float& dissolveTime);
 
 	inline void setVelocity(sf::Vector2f vel) { this->m_velocity = vel; }
 	inline sf::Vector2f getVelocity() { return this->m_velocity; }

@@ -17,8 +17,8 @@ int main()
 	float smoke_generationTime = 0.25f;
 	bool w_down = false;
 
-	ParticleSystem* smoke = new ParticleSystem(1, std::pair<int, int>(5, 15), 0.005f, sf::Color(92, 92, 92, 255));
-	ParticleSystem* flame = new ParticleSystem(1, std::pair<int, int>(5, 10), 0.001f, sf::Color::Yellow);
+	ParticleSystem* smoke = new ParticleSystem(1, 25, std::pair<int, int>(4, 10), 0.005f, sf::Color(255, 255, 255, 255));
+	ParticleSystem* flame = new ParticleSystem(1, 15, std::pair<int, int>(5, 10), 0.001f, sf::Color(255,246,0,255));
 
 	Rocket* player = new Rocket(windowSize);
 	Weapon* weapon = new Weapon(windowSize);
