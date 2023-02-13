@@ -45,8 +45,11 @@ void Rocket::update(float dt)
 
 	rocket.setRotation((angle * (180 / 3.1415)));
 	rocket.setPosition(m_pos);
-	m_endPos.x = m_pos.x + std::sin(-angle) * 60;
-	m_endPos.y = m_pos.y + std::cos(-angle) * 60;
+
+	m_endPos.x = m_pos.x + std::sin(-angle) * 70;
+	m_endPos.y = m_pos.y + std::cos(-angle) * 70;
+	particle_target_pos.x = m_pos.x + std::sin(-angle) * 160;
+	particle_target_pos.y = m_pos.y + std::cos(-angle) * 160;
 
 	dot.setPosition(m_endPos);
 

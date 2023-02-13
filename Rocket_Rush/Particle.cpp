@@ -17,8 +17,8 @@ Particle::Particle(const sf::Vector2f& size, const sf::Color& color, const sf::V
 
 void Particle::update(float dt, const float& angle, const float& speed)
 {
-	this->m_particle.move(-std::cos(angle) * dt * speed, 0);
-	this->m_particle.move(0, -std::sin(angle) * dt * speed);
+	this->m_particle.move(std::cos(angle) * dt * speed, 0);
+	this->m_particle.move(0, std::sin(angle) * dt * speed);
 	this->m_pos = this->m_particle.getPosition();
 	float rotation_angle = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 0.1));
 	this->m_particle.rotate(rotation_angle);

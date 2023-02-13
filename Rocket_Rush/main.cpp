@@ -12,7 +12,9 @@ int main()
 	sf::Time tme;
 	float dt;
 	float flame_generationTimer = 0;
+	float flame_generationTime = 0.01f;
 	float smoke_generationTimer = 0;
+	float smoke_generationTime = 0.25f;
 	bool w_down = false;
 
 	ParticleSystem* smoke = new ParticleSystem(1, std::pair<int, int>(5, 15), 0.005f, sf::Color(92, 92, 92, 255));
@@ -61,14 +63,15 @@ int main()
 		//particle generation
 		//smoke particles
 		smoke_generationTimer += dt;
-		if (smoke_generationTimer > 0.2f) {
+		if (smoke_generationTimer > smoke_generationTime) {
 			smoke_generationTimer = 0;
+			smoke_generationTime = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 0.25));
 			if (player->getSpeed() != 0)
 				smoke->emit(player->getPlayerEndPosition());
 		}
 		//flame particles
 		flame_generationTimer += dt;
-		if (flame_generationTimer > 0.01f) {
+		if (flame_generationTimer > flame_generationTime) {
 			flame_generationTimer = 0;
 			if (w_down)
 				flame->emit(player->getPlayerEndPosition());
@@ -77,8 +80,8 @@ int main()
 		player->update(dt);
 		weapon->update(dt);
 
-		smoke->update(dt, player->getPlayerEndPosition());
-		flame->update(dt, player->getPlayerEndPosition());
+		smoke->update(dt, player->getParticleTargetPos());
+		flame->update(dt, player->getParticleTargetPos());
 
 		/////////////////////
 		window.clear();
