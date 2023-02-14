@@ -1,13 +1,10 @@
-﻿  ParticleSystem.cpp
-C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\ParticleSystem.cpp(10,22): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\ParticleSystem.cpp(21,14): warning C4244: 'initializing': conversion from '_Ty1' to 'float', possible loss of data
+﻿  Rocket.cpp
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Rocket.hpp(11,28): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
-              _Ty1=int
+              T=float
           ]
-  main.cpp
-C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\main.cpp(7,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\main.cpp(61,91): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Rocket.cpp(50,50): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -16,7 +13,7 @@ C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rock
           [
               T=float
           ]
-C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\main.cpp(61,57): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Rocket.cpp(52,50): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -25,9 +22,11 @@ C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rock
           [
               T=float
           ]
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Rocket.cpp(54,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Rocket.cpp(55,30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Generating code
   3 of 319 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Rocket_Rush.vcxproj -> C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Release\Rocket_Rush.exe

@@ -6,6 +6,9 @@ class Rocket : public Entity
 {
 private:
 	sf::CircleShape dot;
+	sf::Texture rocket_texture;
+	sf::Sprite m_sprite;
+	sf::Vector2f sprite_scale = sf::Vector2f(3.2, 2.8);
 	sf::RectangleShape rocket;
 	sf::Vector2f m_pos;
 	sf::Vector2f m_endPos;
