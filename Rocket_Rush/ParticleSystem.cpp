@@ -10,7 +10,7 @@ ParticleSystem::ParticleSystem(const int& maxNumber, const int& maxScatter, cons
 	this->max_scatter = maxScatter;
 	this->dissolveTime = dissolveTime;
 
-	this->glowTexture.loadFromFile("Assets/Particles/glow.png");
+	this->glowTexture.loadFromFile("Assets/Particles/my_glow.png");
 	this->glowSprite.setTexture(this->glowTexture);
 	this->glowSprite.setColor(this->m_color);
 }

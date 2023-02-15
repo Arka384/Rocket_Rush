@@ -4,7 +4,7 @@ Rocket::Rocket(const sf::Vector2i& windowSize)
 {
 	this->windowSize = windowSize;
 	rocket.setFillColor(sf::Color::Yellow);
-	rocket.setSize(sf::Vector2f(26, 85));
+	rocket.setSize(sf::Vector2f(26, 80));
 	m_pos = sf::Vector2f(200, 200);
 	rocket.setOrigin(sf::Vector2f(rocket.getGlobalBounds().width / 2, rocket.getGlobalBounds().height / 4));
 	rocket.setPosition(m_pos);
@@ -13,22 +13,22 @@ Rocket::Rocket(const sf::Vector2i& windowSize)
 	dot.setRadius(5.f);
 	dot.setOrigin(sf::Vector2f(dot.getGlobalBounds().width / 2, dot.getGlobalBounds().height / 2));
 
-	this->rocket_texture.loadFromFile("Assets/Rocket/rocket_pixel.png");
+	this->rocket_texture.loadFromFile("Assets/Rocket/rocket_glow.png");
 	this->m_sprite.setTexture(this->rocket_texture);
 	this->m_sprite.setOrigin(sf::Vector2f(m_sprite.getGlobalBounds().width / 2, m_sprite.getGlobalBounds().height / 4));
 	this->m_sprite.setScale(sprite_scale);
 	
-	this->m_sprite.setPosition(m_pos);
+	this->m_sprite.setPosition(m_spritePos);
 }
 
 void Rocket::update(float dt)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		speed += acc * dt;
-	}
+	}/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 		speed -= acc * dt;
-	}
+	}*/
 
 	if (speed > max_speed)
 		speed = max_speed;
@@ -54,7 +54,10 @@ void Rocket::update(float dt)
 	rocket.setRotation((angle * (180 / 3.1415)));
 	m_sprite.setRotation((angle * (180 / 3.1415)));
 	rocket.setPosition(m_pos);
-	m_sprite.setPosition(m_pos);
+	
+	m_spritePos.x = m_pos.x - std::sin(-angle) * 20;
+	m_spritePos.y = m_pos.y - std::cos(-angle) * 20;
+	m_sprite.setPosition(m_spritePos);
 
 	m_endPos.x = m_pos.x + std::sin(-angle) * 80;
 	m_endPos.y = m_pos.y + std::cos(-angle) * 80;

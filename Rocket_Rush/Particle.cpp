@@ -10,8 +10,8 @@ Particle::Particle(const sf::Vector2f& size, const sf::Sprite& particleSprite, c
 	this->m_dissolveTime = dissolveTime;
 	this->m_sprite = particleSprite;
 
-	this->m_sprite.setScale(m_particle_size.x / 32, m_particle_size.y / 32);
 	this->m_sprite.setOrigin(this->m_sprite.getGlobalBounds().width / 2, this->m_sprite.getGlobalBounds().height / 2);
+	this->m_sprite.setScale(m_particle_size.x / 48, m_particle_size.y / 48);
 	this->m_sprite.setPosition(m_pos);
 }
 

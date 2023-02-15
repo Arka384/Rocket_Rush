@@ -11,6 +11,7 @@ private:
 	sf::Vector2f sprite_scale = sf::Vector2f(3.2, 2.8);
 	sf::RectangleShape rocket;
 	sf::Vector2f m_pos;
+	sf::Vector2f m_spritePos = sf::Vector2f(0, -20);
 	sf::Vector2f m_endPos;
 	sf::Vector2f particle_target_pos;
 	sf::Vector2i windowSize;
