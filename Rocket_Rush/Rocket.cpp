@@ -3,11 +3,11 @@
 Rocket::Rocket(const sf::Vector2i& windowSize)
 {
 	this->windowSize = windowSize;
-	rocket.setFillColor(sf::Color::Yellow);
-	rocket.setSize(sf::Vector2f(26, 80));
+	this->setFillColor(sf::Color::Yellow);
+	this->setSize(sf::Vector2f(26, 80));
 	m_pos = sf::Vector2f(200, 200);
-	rocket.setOrigin(sf::Vector2f(rocket.getGlobalBounds().width / 2, rocket.getGlobalBounds().height / 4));
-	rocket.setPosition(m_pos);
+	this->setOrigin(sf::Vector2f(this->getGlobalBounds().width / 2, this->getGlobalBounds().height / 4));
+	this->setPosition(m_pos);
 
 	dot.setFillColor(sf::Color::Red);
 	dot.setRadius(5.f);
@@ -51,9 +51,9 @@ void Rocket::update(float dt)
 	if (m_pos.y < 0) m_pos.y = 0;
 	if (m_pos.y > windowSize.y) m_pos.y = windowSize.y;
 
-	rocket.setRotation((angle * (180 / 3.1415)));
+	this->setRotation((angle * (180 / 3.1415)));
 	m_sprite.setRotation((angle * (180 / 3.1415)));
-	rocket.setPosition(m_pos);
+	this->setPosition(m_pos);
 	
 	m_spritePos.x = m_pos.x - std::sin(-angle) * 20;
 	m_spritePos.y = m_pos.y - std::cos(-angle) * 20;

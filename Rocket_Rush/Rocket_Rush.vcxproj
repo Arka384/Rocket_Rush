@@ -144,17 +144,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="LevelMaker.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Rocket.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.hpp" />
     <ClInclude Include="Entity.hpp" />
+    <ClInclude Include="LevelMaker.hpp" />
     <ClInclude Include="Particle.hpp" />
     <ClInclude Include="ParticleSystem.hpp" />
+    <ClInclude Include="Planet.hpp" />
     <ClInclude Include="Rocket.hpp" />
     <ClInclude Include="Weapon.hpp" />
   </ItemGroup>
