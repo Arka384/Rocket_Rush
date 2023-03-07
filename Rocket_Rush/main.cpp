@@ -1,7 +1,7 @@
 #include "ParticleSystem.hpp"
-#include "Rocket.hpp"
+#include "Rocket.hpp" // => level_maker
 #include "Weapon.hpp"
-#include "LevelMaker.hpp"
+#include "Camera.hpp" // => level_maker
 
 int main()
 {
@@ -24,7 +24,11 @@ int main()
 	Rocket* player = new Rocket(windowSize);
 	Weapon* weapon = new Weapon(windowSize);
 	LevelMaker* l_maker = new LevelMaker();
+	Camera* cam = new Camera(windowSize);
+
+	l_maker->loadLevel();
 	l_maker->spawn();
+	cam->setViewSpreads(*l_maker);
 
 	while (window.isOpen()) {
 		tme = clk.restart();
@@ -80,9 +84,10 @@ int main()
 				flame->emit(player->getPlayerEndPosition());
 		}
 
-		player->update(dt);
+		player->update(dt, *l_maker);
 		weapon->update(dt);
 		l_maker->update(*player);
+		cam->update(player->getPosition(), window, dt);
 
 		smoke->update(dt, player->getParticleTargetPos());
 		flame->update(dt, player->getParticleTargetPos());
@@ -90,12 +95,14 @@ int main()
 		/////////////////////
 		window.clear();
 
+		l_maker->render(window);
 		smoke->render(window);
 		flame->render(window);
 
+
 		player->render(window);
 		weapon->draw(window);
-		l_maker->render(window);
+		
 
 		window.display();
 	}

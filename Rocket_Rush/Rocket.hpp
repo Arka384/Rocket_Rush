@@ -1,6 +1,6 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "Entity.hpp"
+//#include "Entity.hpp"
+#include "LevelMaker.hpp"
 
 class Rocket : public Entity
 {
@@ -25,13 +25,15 @@ private:
 
 public:
 	Rocket(const sf::Vector2i& windowSize);
-	void update(float dt);
+	void update(float dt, LevelMaker& level_maker);
+
 	inline sf::Vector2f getPlayerEndPosition() { return m_endPos; }
 	inline sf::Vector2f getParticleTargetPos() { return particle_target_pos; }
 	inline sf::Vector2f getmPos() { return m_pos; }
 	inline float getSpeed() { return speed; }
 	inline float getRocketAngle() { return angle; }
 	inline float getFireAngle() { return fireAngle; }
+
 	void render(sf::RenderWindow& window);
 };
 

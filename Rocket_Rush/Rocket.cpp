@@ -21,7 +21,7 @@ Rocket::Rocket(const sf::Vector2i& windowSize)
 	this->m_sprite.setPosition(m_spritePos);
 }
 
-void Rocket::update(float dt)
+void Rocket::update(float dt, LevelMaker& level_maker)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		speed += acc * dt;
@@ -46,10 +46,11 @@ void Rocket::update(float dt)
 	m_pos.x -= std::sin(-angle) * speed;
 	m_pos.y -= std::cos(-angle) * speed;
 
-	if (m_pos.x < 0)	m_pos.x = 0;
-	if (m_pos.x > windowSize.x) m_pos.x = windowSize.x;
-	if (m_pos.y < 0) m_pos.y = 0;
-	if (m_pos.y > windowSize.y) m_pos.y = windowSize.y;
+	//level based position clampping
+	if (m_pos.x < level_maker.get_LevelWidthSpread().x)	m_pos.x = level_maker.get_LevelWidthSpread().x;
+	if (m_pos.x > level_maker.get_LevelWidthSpread().y) m_pos.x = level_maker.get_LevelWidthSpread().y;
+	if (m_pos.y < level_maker.get_LevelHeightSpread().x) m_pos.y = level_maker.get_LevelHeightSpread().x;
+	if (m_pos.y > level_maker.get_LevelHeightSpread().y) m_pos.y = level_maker.get_LevelHeightSpread().y;
 
 	this->setRotation((angle * (180 / 3.1415)));
 	m_sprite.setRotation((angle * (180 / 3.1415)));
