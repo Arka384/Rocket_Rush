@@ -5,6 +5,7 @@
 class LevelMaker
 {
 private:
+	int maxPlanets = 5;
 
 public:
 	std::list<std::shared_ptr<Planet>> planets;

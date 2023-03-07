@@ -8,6 +8,7 @@ private:
 	sf::Sprite m_sprite;
 	sf::Vector2f sprite_scale;
 	float m_radius = 10.f;
+	float m_collision_offset = 20.f;
 	sf::Vector2f circle_pos;
 	sf::Vector2f sprite_pos;
 

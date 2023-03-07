@@ -75,8 +75,7 @@ void Rocket::update(float dt)
 
 void Rocket::render(sf::RenderWindow& window)
 {
-	//window.draw(m_sprite);
-	//window.draw(rocket);
+	//window.draw(*this);
 	window.draw(m_sprite);
 
 	window.draw(dot);

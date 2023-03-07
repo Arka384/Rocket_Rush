@@ -5,6 +5,7 @@ LevelMaker::LevelMaker() = default;
 
 void LevelMaker::spawn(void)
 {
+	sf::Vector2f windowSize = sf::Vector2f(1920, 1080);
 	sf::Sprite s;
 	Planet* p = new Planet(sf::Vector2f(500, 500), 100, s);
 	planets.push_back(std::shared_ptr<Planet>(p));
