@@ -2,7 +2,7 @@
 
 Planet::Planet() = default;
 
-Planet::Planet(const sf::Vector2f& pos, const float& size, const sf::Sprite& sprite)
+Planet::Planet(const sf::Vector2f& pos, float size, const sf::Sprite& sprite)
 {
 	this->circle_pos = pos;
 	this->m_radius = size;
@@ -12,6 +12,19 @@ Planet::Planet(const sf::Vector2f& pos, const float& size, const sf::Sprite& spr
 	this->m_circle.setOrigin(sf::Vector2f(m_circle.getGlobalBounds().width / 2, m_circle.getGlobalBounds().height / 2));
 	this->m_circle.setPosition(pos);
 
+}
+
+void Planet::update(float dt)
+{
+	if (n_austronauts != 0) {
+		resource_update_timer += dt;
+		if (resource_update_timer > resource_update_time) {
+			resource_update_timer = 0;
+			
+			n_rocks += n_austronauts / 2;
+			n_fuel += n_austronauts;
+		}
+	}
 }
 
 bool Planet::isColliding(const Entity& other)

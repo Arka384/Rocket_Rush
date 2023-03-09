@@ -8,6 +8,7 @@ int main()
 	srand(time(NULL));
 	sf::Vector2i windowSize = sf::Vector2i(1920, 1080);
 	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Testing", sf::Style::Fullscreen);
+	window.setFramerateLimit(300);
 	sf::Vector2f mousePos;
 	sf::Clock clk;
 	sf::Time tme;
@@ -23,7 +24,7 @@ int main()
 
 	Rocket* player = new Rocket(windowSize);
 	Weapon* weapon = new Weapon(windowSize);
-	LevelMaker* l_maker = new LevelMaker();
+	LevelMaker* l_maker = new LevelMaker(windowSize);
 	Camera* cam = new Camera(windowSize);
 
 	l_maker->loadLevel();
@@ -86,7 +87,7 @@ int main()
 
 		player->update(dt, *l_maker);
 		weapon->update(dt);
-		l_maker->update(*player);
+		l_maker->update(dt, *player);
 		cam->update(player->getPosition(), window, dt);
 
 		smoke->update(dt, player->getParticleTargetPos());
