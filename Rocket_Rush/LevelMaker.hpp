@@ -1,7 +1,9 @@
 #pragma once
 #include "Planet.hpp"
 #include "ParticleSystem.hpp"
+#include <iostream>
 #include <list>
+#include <sstream>
 
 class LevelMaker
 {
@@ -25,11 +27,13 @@ private:
 	sf::Vector2f level_width_spread;
 	sf::Vector2f level_height_spread;
 	sf::Vector2i windowSize;
+	sf::Vector2f detailed_inventory_pos;
 
 	int maxPlanets = 5;
 	
 	bool collided = false;
 	bool showPlanetInventory = false;
+	bool show_Detailed_PlanetInventory = false;
 
 public:
 	std::list<std::shared_ptr<Planet>> planets;
@@ -42,6 +46,12 @@ public:
 	}
 	sf::Vector2f get_LevelWidthSpread() { return level_width_spread; }
 	sf::Vector2f get_LevelHeightSpread() { return level_height_spread; }
+	sf::Vector2f get_Detailed_planet_inventory_pos() { return detailed_inventory_pos; }
+	sf::Text get_austro_text() { return austro_text; }
+	sf::Text get_fuel_text() { return fuel_text; }
+	sf::Text get_rocks_text() { return rocks_text; }
+	bool is_show_Detailed_PlanetInventory() { return show_Detailed_PlanetInventory; }
+	void set_show_Detailed_PlanetInventory(bool val) { this->show_Detailed_PlanetInventory = val; }
 
 	void loadLevel();
 	void spawn(void);

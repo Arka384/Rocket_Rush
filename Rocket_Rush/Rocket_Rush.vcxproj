@@ -151,6 +151,7 @@
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Rocket.cpp" />
+    <ClCompile Include="Ui.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="ParticleSystem.hpp" />
     <ClInclude Include="Planet.hpp" />
     <ClInclude Include="Rocket.hpp" />
+    <ClInclude Include="Ui.hpp" />
     <ClInclude Include="Weapon.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

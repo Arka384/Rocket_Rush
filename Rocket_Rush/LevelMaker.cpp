@@ -1,5 +1,4 @@
 #include "LevelMaker.hpp"
-#include <iostream>
 
 LevelMaker::LevelMaker(sf::Vector2i windowSize) {
 	this->windowSize = windowSize;
@@ -8,12 +7,12 @@ LevelMaker::LevelMaker(sf::Vector2i windowSize) {
 	backgroundSprite.setTexture(backgroundTex);
 	backgroundSprite.setPosition(0, 0);
 
-	if (!itemsTex.loadFromFile("Assets/Levels/items.png"))
+	if (!itemsTex.loadFromFile("Assets/Levels/items_mod.png"))
 		exit(1);
 	items.setTexture(itemsTex);
 
 	uint32_t fontSize = 20;
-	font.loadFromFile("Assets/Fonts/Spaceline.otf");
+	font.loadFromFile("Assets/Fonts/Gameplay.ttf");
 	austro_text.setFont(font);
 	austro_text.setCharacterSize(fontSize);
 	fuel_text.setFont(font);
@@ -49,13 +48,14 @@ void LevelMaker::spawn(void)
 	sf::Sprite s;
 	Planet* p = new Planet(sf::Vector2f(500, 500), 100, s);
 	planets.push_back(std::shared_ptr<Planet>(p));
-	Planet* p2 = new Planet(sf::Vector2f(-1000, 900), 100, s);
+	Planet* p2 = new Planet(sf::Vector2f(-1400, 900), 100, s);
 	planets.push_back(std::shared_ptr<Planet>(p2));
 }
 
 void LevelMaker::update(float dt, const Entity& rocket)
 {
 	bool b_flag = false;
+	Planet* tempPlanet = nullptr;
 	for (auto it = planets.begin(); it != planets.end(); it++) {
 		Planet* p = it->get();
 		//if (p->isColliding(rocket) && !collided) {
@@ -77,15 +77,45 @@ void LevelMaker::update(float dt, const Entity& rocket)
 			float items_pos_x = p->m_circle.getPosition().x - items.getGlobalBounds().width / 2;
 			float items_pos_y = p->m_circle.getPosition().y - items.getGlobalBounds().height * 1.5;
 			items.setPosition(sf::Vector2f(items_pos_x, items_pos_y));
+			
+			//normally detailed inventory will be on the left side
+			if ((items_pos_x - 500) < level_width_spread.x)	//if goes beyond map
+				detailed_inventory_pos.x = items_pos_x + items.getGlobalBounds().width * 1.3; //place on right side
+			else detailed_inventory_pos.x = items_pos_x - 500;	//on the left side
+			detailed_inventory_pos.y = items_pos_y;
+			
 			p->setShowInventory(true);
+			tempPlanet = p;
 			b_flag = true;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !show_Detailed_PlanetInventory)
+				show_Detailed_PlanetInventory = true;
 		}
 		else
-			p->setShowInventory(true);
+			p->setShowInventory(false);
 	}
 
 	if (b_flag)	showPlanetInventory = true;
-	else showPlanetInventory = false;
+	else {
+		showPlanetInventory = false;
+		show_Detailed_PlanetInventory = false;
+	}
+
+	//updating inventory texts
+	if (showPlanetInventory) {
+		std::stringstream ss;
+		ss << tempPlanet->getAsutronauts();
+		austro_text.setString(ss.str());
+		austro_text.setPosition(items.getPosition().x + 54, items.getPosition().y + 174);
+		ss.str("");
+		ss << tempPlanet->getFuel();
+		fuel_text.setString(ss.str());
+		fuel_text.setPosition(items.getPosition().x + 174, items.getPosition().y + 174);
+		ss.str("");
+		ss << tempPlanet->getRocks();
+		rocks_text.setString(ss.str());
+		rocks_text.setPosition(items.getPosition().x + 280, items.getPosition().y + 174);
+	}
 
 	//collision_particles->update(dt, sf::Vector2f(rocket.getPosition().x, 0));
 	
@@ -100,6 +130,11 @@ void LevelMaker::render(sf::RenderWindow& window)
 		p->render(window);
 
 	//collision_particles->render(window);
-	if(showPlanetInventory)
+	if (showPlanetInventory) {
 		window.draw(items);
+		window.draw(austro_text);
+		window.draw(fuel_text);
+		window.draw(rocks_text);
+	}
+		
 }

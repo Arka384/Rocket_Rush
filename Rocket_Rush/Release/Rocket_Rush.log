@@ -1,8 +1,16 @@
-﻿  LevelMaker.cpp
-C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\LevelMaker.cpp(75,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\LevelMaker.cpp(78,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+﻿  Ui.cpp
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Rocket.hpp(11,28): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Ui.cpp(51,31): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Ui.cpp(55,34): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Ui.cpp(59,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Ui.cpp(63,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Rocket_Rush\Rocket_Rush\Ui.cpp(67,33): warning C4305: 'argument': truncation from 'double' to 'float'
   Generating code
-  1 of 481 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  1 of 457 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

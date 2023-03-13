@@ -15,9 +15,9 @@ private:
 	bool showInventory = false;
 
 	//gameplay
-	int n_austronauts = 0;
-	int n_fuel = 0;
-	int n_rocks = 0;
+	int n_austronauts = 5;
+	int n_fuel = 10;
+	int n_rocks = 6;
 	float resource_update_time = 5.f;
 	float resource_update_timer = 0.f;
 

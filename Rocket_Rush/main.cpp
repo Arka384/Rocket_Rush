@@ -1,6 +1,7 @@
 #include "ParticleSystem.hpp"
-#include "Rocket.hpp" // => level_maker
-#include "Weapon.hpp"
+//#include "Rocket.hpp" // => level_maker
+#include "Ui.hpp"	// => rocket
+//#include "Weapon.hpp"
 #include "Camera.hpp" // => level_maker
 
 int main()
@@ -22,10 +23,11 @@ int main()
 	ParticleSystem* smoke = new ParticleSystem(1, 25, std::pair<int, int>(4, 10), 0.005f, sf::Color(255, 255, 255, 255));
 	ParticleSystem* flame = new ParticleSystem(1, 15, std::pair<int, int>(5, 10), 0.001f, sf::Color(255,246,0,255));
 
-	Rocket* player = new Rocket(windowSize);
-	Weapon* weapon = new Weapon(windowSize);
 	LevelMaker* l_maker = new LevelMaker(windowSize);
+	Rocket* player = new Rocket(windowSize);
+	//Weapon* weapon = new Weapon(windowSize);
 	Camera* cam = new Camera(windowSize);
+	Ui* ui = new Ui();
 
 	l_maker->loadLevel();
 	l_maker->spawn();
@@ -44,7 +46,7 @@ int main()
 				return 0;
 			case sf::Event::MouseButtonPressed:
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-					weapon->fire(player->getmPos(), player->getFireAngle());
+					//weapon->fire(player->getmPos(), player->getFireAngle());
 				}
 				break;
 
@@ -66,7 +68,8 @@ int main()
 		}
 
 		//////////////////////
-		mousePos = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+		sf::Vector2i tempMousePos = sf::Mouse::getPosition(window);
+		mousePos = window.mapPixelToCoords(tempMousePos);
 
 		//particle generation
 		//smoke particles
@@ -86,9 +89,10 @@ int main()
 		}
 
 		player->update(dt, *l_maker);
-		weapon->update(dt);
+		//weapon->update(dt);
 		l_maker->update(dt, *player);
 		cam->update(player->getPosition(), window, dt);
+		ui->update(dt, mousePos, *l_maker, *player);
 
 		smoke->update(dt, player->getParticleTargetPos());
 		flame->update(dt, player->getParticleTargetPos());
@@ -102,8 +106,8 @@ int main()
 
 
 		player->render(window);
-		weapon->draw(window);
-		
+		//weapon->draw(window);
+		ui->render(window);
 
 		window.display();
 	}

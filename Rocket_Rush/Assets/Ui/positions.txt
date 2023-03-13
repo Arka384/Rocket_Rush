@@ -1,0 +1,12 @@
+all button x = 255
+
+add y = 138
+remove y = 200
+collect y = 322
+collect y = 462
+
+close x = 132
+close y = 552
+
+text x = 155
+text y = 170
