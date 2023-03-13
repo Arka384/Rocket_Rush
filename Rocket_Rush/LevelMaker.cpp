@@ -7,7 +7,7 @@ LevelMaker::LevelMaker(sf::Vector2i windowSize) {
 	backgroundSprite.setTexture(backgroundTex);
 	backgroundSprite.setPosition(0, 0);
 
-	if (!itemsTex.loadFromFile("Assets/Levels/items_mod.png"))
+	if (!itemsTex.loadFromFile("Assets/Ui/items.png"))
 		exit(1);
 	items.setTexture(itemsTex);
 
@@ -55,7 +55,6 @@ void LevelMaker::spawn(void)
 void LevelMaker::update(float dt, const Entity& rocket)
 {
 	bool b_flag = false;
-	Planet* tempPlanet = nullptr;
 	for (auto it = planets.begin(); it != planets.end(); it++) {
 		Planet* p = it->get();
 		//if (p->isColliding(rocket) && !collided) {
@@ -85,7 +84,7 @@ void LevelMaker::update(float dt, const Entity& rocket)
 			detailed_inventory_pos.y = items_pos_y;
 			
 			p->setShowInventory(true);
-			tempPlanet = p;
+			activePlanet = p;
 			b_flag = true;
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !show_Detailed_PlanetInventory)
@@ -104,15 +103,15 @@ void LevelMaker::update(float dt, const Entity& rocket)
 	//updating inventory texts
 	if (showPlanetInventory) {
 		std::stringstream ss;
-		ss << tempPlanet->getAsutronauts();
+		ss << activePlanet->getAsutronauts();
 		austro_text.setString(ss.str());
 		austro_text.setPosition(items.getPosition().x + 54, items.getPosition().y + 174);
 		ss.str("");
-		ss << tempPlanet->getFuel();
+		ss << activePlanet->getFuel();
 		fuel_text.setString(ss.str());
 		fuel_text.setPosition(items.getPosition().x + 174, items.getPosition().y + 174);
 		ss.str("");
-		ss << tempPlanet->getRocks();
+		ss << activePlanet->getRocks();
 		rocks_text.setString(ss.str());
 		rocks_text.setPosition(items.getPosition().x + 280, items.getPosition().y + 174);
 	}

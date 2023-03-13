@@ -19,7 +19,7 @@ private:
 	sf::Text austro_text, fuel_text, rocks_text;
 
 	//ParticleSystem* collision_particles;
-	
+	Planet* activePlanet = nullptr;
 	std::list<sf::Sprite> levelSprites;
 	std::pair<int, int> level_1 = std::make_pair<int, int>(3, 3);
 	std::pair<int, int> currentLevelMaxMin = std::make_pair<int, int>(-level_1.first / 2, level_1.second / 2);
@@ -39,6 +39,7 @@ public:
 	std::list<std::shared_ptr<Planet>> planets;
 
 	LevelMaker(sf::Vector2i windowSize);
+	Planet* getActivePlanet() { return this->activePlanet; }
 	std::pair<int, int> getCurrLevelSize() { return currentLevelMaxMin; }
 	sf::Vector2f getBgSpriteSize() {
 		return sf::Vector2f(backgroundSprite.getGlobalBounds().width,

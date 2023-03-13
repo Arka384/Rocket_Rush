@@ -24,7 +24,7 @@ private:
 
 public:
 	Ui();
-	void update(float dt, sf::Vector2f mousePos, LevelMaker& levelMaker, const Rocket& rocket);
+	void update(float dt, sf::Vector2f mousePos, bool& mousePressed, LevelMaker& levelMaker, Rocket& rocket);
 	bool isHot(sf::Vector2f mousePos, sf::Vector2f uiElemPos, sf::FloatRect uiElemSize);
 	void render(sf::RenderWindow& window);
 };

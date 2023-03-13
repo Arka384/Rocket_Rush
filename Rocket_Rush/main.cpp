@@ -11,6 +11,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Testing", sf::Style::Fullscreen);
 	window.setFramerateLimit(300);
 	sf::Vector2f mousePos;
+	bool mousePressed = false;
 	sf::Clock clk;
 	sf::Time tme;
 	float dt;
@@ -45,9 +46,10 @@ int main()
 				window.close();
 				return 0;
 			case sf::Event::MouseButtonPressed:
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-					//weapon->fire(player->getmPos(), player->getFireAngle());
-				}
+				mousePressed = true;
+				break;
+			case sf::Event::MouseButtonReleased:
+				mousePressed = false;
 				break;
 
 			case sf::Event::KeyPressed:
@@ -92,7 +94,7 @@ int main()
 		//weapon->update(dt);
 		l_maker->update(dt, *player);
 		cam->update(player->getPosition(), window, dt);
-		ui->update(dt, mousePos, *l_maker, *player);
+		ui->update(dt, mousePos, mousePressed, *l_maker, *player);
 
 		smoke->update(dt, player->getParticleTargetPos());
 		flame->update(dt, player->getParticleTargetPos());

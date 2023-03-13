@@ -17,7 +17,7 @@ Ui::Ui()
 	closeButton.setTexture(closeButtonTex);
 }
 
-void Ui::update(float dt, sf::Vector2f mousePos, LevelMaker& levelMaker, const Rocket& rocket)
+void Ui::update(float dt, sf::Vector2f mousePos, bool& mousePressed, LevelMaker& levelMaker, Rocket& rocket)
 {
 	show_planet_inventory = levelMaker.is_show_Detailed_PlanetInventory();
 	
@@ -50,22 +50,42 @@ void Ui::update(float dt, sf::Vector2f mousePos, LevelMaker& levelMaker, const R
 		if (isHot(mousePos, addButton.getPosition(), addButton.getGlobalBounds())) {
 			addButton.setScale(1.1, 1.1);
 			addButton.setPosition(addButton.getPosition().x - 5, addButton.getPosition().y - 3);
+			if (mousePressed) {
+				mousePressed = false;
+				levelMaker.getActivePlanet()->setAustronauts(levelMaker.getActivePlanet()->getAsutronauts() + 1);
+			}
 		}
 		else if (isHot(mousePos, removeButton.getPosition(), removeButton.getGlobalBounds())) {
 			removeButton.setScale(1.1, 1.1);
 			removeButton.setPosition(removeButton.getPosition().x - 5, removeButton.getPosition().y - 3);
+			if (mousePressed) {
+				mousePressed = false;
+				levelMaker.getActivePlanet()->setAustronauts(levelMaker.getActivePlanet()->getAsutronauts() - 1);
+			}
 		}
 		else if (isHot(mousePos, collectButton_1.getPosition(), collectButton_1.getGlobalBounds())) {
 			collectButton_1.setScale(1.1, 1.1);
 			collectButton_1.setPosition(collectButton_1.getPosition().x - 5, collectButton_1.getPosition().y - 3);
+			if (mousePressed) {
+				mousePressed = false;
+				levelMaker.getActivePlanet()->setFuel(0);
+			}
 		}
 		else if (isHot(mousePos, collectButton_2.getPosition(), collectButton_2.getGlobalBounds())) {
 			collectButton_2.setScale(1.1, 1.1);
 			collectButton_2.setPosition(collectButton_2.getPosition().x - 5, collectButton_2.getPosition().y - 3);
+			if (mousePressed) {
+				mousePressed = false;
+				levelMaker.getActivePlanet()->setRocks(0);
+			}
 		}
 		else if (isHot(mousePos, closeButton.getPosition(), closeButton.getGlobalBounds())) {
 			closeButton.setScale(1.1, 1.1);
 			closeButton.setPosition(closeButton.getPosition().x - 5, closeButton.getPosition().y - 3);
+			if (mousePressed) {
+				mousePressed = false;
+				levelMaker.set_show_Detailed_PlanetInventory(false);
+			}
 		}
 	}
 	
